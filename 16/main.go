@@ -15,20 +15,20 @@ func quicksort(a []int, left, right int) {
 }
 
 func partition(arr []int, low, high int) ([]int, int) {
-	pivot := arr[high]
-	i := low
+	pivot := arr[high] // крайний элемент, конец массива
+	i := low           // граничный элемент, который будет двигаться слева направо пошагово
 	for j := low; j < high; j++ {
-		if arr[j] < pivot {
-			arr[i], arr[j] = arr[j], arr[i]
-			i++
+		if arr[j] < pivot { // если элемент массива меньше крайнего элемента, то кладем его слева от граничного элемента
+			arr[j], arr[i] = arr[i], arr[j] // хоп
+			i++                             // двигаем граничный элемент
 		}
 	}
-	arr[i], arr[high] = arr[high], arr[i]
+	arr[i], arr[high] = arr[high], arr[i] // все элементы, больше кранего элемента - ведем вправо
 	return arr, i
 }
 
 func main() {
-	a := []int{5, 2, 7, 1, 4, 9, 3, 6, 11}
+	a := []int{5, 2, 7, 1, 4, 9, 3, 6, 8}
 
 	quicksort(a, 0, len(a)-1)
 	fmt.Println(a)
